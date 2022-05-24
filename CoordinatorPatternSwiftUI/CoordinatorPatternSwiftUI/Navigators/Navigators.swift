@@ -26,15 +26,15 @@ final class AppView {
     
     private init() {}
     
-    func makeView<T: View>(_ view: T) -> UIViewController {
-        CustomHostingController(rootView: view)
+    func makeView<T: View>(_ view: T, navTitle: String? = nil) -> UIViewController {
+        CustomHostingController(rootView: view, navTitle: navTitle)
     }
 }
 
 /// SwiftUI HostingController Wrapper
 class CustomHostingController<Content>: UIHostingController<AnyView> where Content: View {
-    public init(rootView: Content) {
-        let content = rootView
+    public init(rootView: Content, navTitle: String?) {
+        let content = rootView.navigationTitle(navTitle ?? "")
         super.init(rootView: AnyView(content))
     }
 
@@ -50,14 +50,16 @@ class CustomHostingController<Content>: UIHostingController<AnyView> where Conte
 struct RootNavigationController<RootView: View>: UIViewControllerRepresentable {
     let nav: UINavigationController
     let rootView: RootView
+    let navTitle: String?
     
-    init(nav: UINavigationController, rootView: RootView) {
+    init(nav: UINavigationController, rootView: RootView, navTitle: String? = nil) {
         self.nav = nav
         self.rootView = rootView
+        self.navTitle = navTitle
     }
 
     func makeUIViewController(context: Context) -> UINavigationController {
-        let vc = CustomHostingController(rootView: rootView)
+        let vc = CustomHostingController(rootView: rootView, navTitle: navTitle)
         nav.addChild(vc)
         return nav
     }

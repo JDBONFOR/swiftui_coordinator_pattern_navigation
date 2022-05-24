@@ -19,8 +19,7 @@ struct Page3View: View {
                     GenericRouterFlowNavigator().popToRoot()
                 }) {
                     Text("Pop to root")
-                }
-                
+                }                
             }
         }
     }

@@ -32,10 +32,10 @@ final class Module1RouterFlowNavigator: Router {
             AppRouter.shared.setRootViewController(viewController: AppView.builder.makeView(destinationView))
         case .page2:
             let destinationView = Page2View()
-            navigationController.pushViewController(AppView.builder.makeView(destinationView), animated: true)
+            navigationController.pushViewController(AppView.builder.makeView(destinationView, navTitle: "Page2"), animated: true)
         case .page3:
             let destinationView = Page3View()
-            navigationController.pushViewController(AppView.builder.makeView(destinationView), animated: true)
+            navigationController.pushViewController(AppView.builder.makeView(destinationView, navTitle: "Page3"), animated: true)
         }
     }
 }

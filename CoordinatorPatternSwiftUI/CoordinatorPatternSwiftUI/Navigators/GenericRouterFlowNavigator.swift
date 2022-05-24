@@ -31,7 +31,7 @@ final class GenericRouterFlowNavigator: Router {
             }
         case .terms(let viewModel):
             let destinationView = TermsAndConditionsView(viewModel: viewModel)
-            navigationController.pushViewController(AppView.builder.makeView(destinationView), animated: true)
+            navigationController.pushViewController(AppView.builder.makeView(destinationView, navTitle: "Terms And Conditions"), animated: true)
         }
     }
 }
